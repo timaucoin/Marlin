@@ -21,7 +21,7 @@
  */
 #pragma once
 
-#include "../core/macros.h" // for ENABLED
+#include "./src/core/macros.h" // for ENABLED
 
 /**
  * This file is the standard Marlin version identifier file.
