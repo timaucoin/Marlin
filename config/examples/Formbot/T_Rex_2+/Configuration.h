@@ -864,7 +864,7 @@
    * For genuine BLTouch 3.0 sensors. Clones may be confused by 3.0 command angles. YMMV.
    * If the pin trigger is not detected, first try swapping the black and white wires then toggle this.
    */
-  //#define BLTOUCH_FORCE_5V_MODE
+  //#define BLTOUCH_5V_MODE
 #endif
 
 
