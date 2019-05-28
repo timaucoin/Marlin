@@ -21,8 +21,6 @@
  */
 #pragma once
 
-#include "./src/core/macros.h" // for ENABLED
-
 /**
  * This file is the standard Marlin version identifier file.
  * Use -DUSE_AUTOMATIC_VERSIONING=1 and a custom _Version.h
