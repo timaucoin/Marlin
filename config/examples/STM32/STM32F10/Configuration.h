@@ -75,8 +75,7 @@
 // build by the user have been successfully uploaded into firmware.
 #define STRING_CONFIG_H_AUTHOR "Victor Perez" // Who made the changes.
 #define SHOW_BOOTSCREEN
-#define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION "STM32F103RET6 board" // will be shown during bootup in line 1
-#define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
+//#define CUSTOM_VERSION_FILE "../../Version.h" // Path from src/inc/ directory
 
 /**
  * *** VENDORS PLEASE READ ***

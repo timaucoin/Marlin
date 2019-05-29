@@ -1146,6 +1146,11 @@
 
 #endif // HAS_GRAPHICAL_LCD
 
+#if HAS_SPI_LCD
+  #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // will be shown during bootup in line 1
+  #define STRING_SPLASH_LINE2 WEBSITE_URL         // will be shown during bootup in line 2
+#endif
+
 // @section safety
 
 /**

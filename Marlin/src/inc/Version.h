@@ -23,78 +23,84 @@
 
 #include "../core/macros.h" // for ENABLED
 
-/**
- * Release version. Leave the Marlin version or apply a custom scheme.
- */
-#ifndef SHORT_BUILD_VERSION
-  #define SHORT_BUILD_VERSION "bugfix-2.0.x"
-#endif
+#if ENABLED(USE_AUTOMATIC_VERSIONING)
 
-/**
- * Verbose version identifier containing a unique identifier, such as the
- * vendor name, download location, GitHub account, etc.
- */
-#ifndef DETAILED_BUILD_VERSION
-  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (GitHub)"
-#endif
+  #include "_Version.h"
 
-/**
- * Distribution date of this release.
- */
-#ifndef STRING_DISTRIBUTION_DATE
-  #define STRING_DISTRIBUTION_DATE "2018-01-20"
-#endif
+#else
+  /**
+   * Release version. Leave the Marlin version or apply a custom scheme.
+   */
+  #ifndef SHORT_BUILD_VERSION
+    #define SHORT_BUILD_VERSION "bugfix-2.0.x"
+  #endif
 
-/**
- * Minimum Configuration.h and Configuration_adv.h file versions.
- * Set based on the release version number. Used to catch an attempt to use
- * older configurations. Override these if using a custom versioning scheme
- * to alert users to major changes.
- */
-#define MARLIN_HEX_VERSION 020000
-#ifndef REQUIRED_CONFIGURATION_H_VERSION
-  #define REQUIRED_CONFIGURATION_H_VERSION MARLIN_HEX_VERSION
-#endif
-#ifndef REQUIRED_CONFIGURATION_ADV_H_VERSION
-  #define REQUIRED_CONFIGURATION_ADV_H_VERSION MARLIN_HEX_VERSION
-#endif
+  /**
+   * Verbose version identifier containing a unique identifier, such as the
+   * vendor name, download location, GitHub account, etc.
+   */
+  #ifndef DETAILED_BUILD_VERSION
+    #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (GitHub)"
+  #endif
 
-/**
- * The protocol for communication to the host. Protocol indicates communication
- * standards such as the use of ASCII, "echo:" and "error:" line prefixes, etc.
- * (Other behaviors are given by the firmware version and capabilities report.)
- */
-#ifndef PROTOCOL_VERSION
-  #define PROTOCOL_VERSION "1.0"
-#endif
+  /**
+   * Distribution date of this release.
+   */
+  #ifndef STRING_DISTRIBUTION_DATE
+    #define STRING_DISTRIBUTION_DATE "2018-01-20"
+  #endif
 
-/**
- * Define a generic printer name to be output to the LCD after booting Marlin.
- */
-#ifndef MACHINE_NAME
-  #define MACHINE_NAME "3D Printer"
-#endif
+  /**
+   * Minimum Configuration.h and Configuration_adv.h file versions.
+   * Set based on the release version number. Used to catch an attempt to use
+   * older configurations. Override these if using a custom versioning scheme
+   * to alert users to major changes.
+   */
+  #define MARLIN_HEX_VERSION 020000
+  #ifndef REQUIRED_CONFIGURATION_H_VERSION
+    #define REQUIRED_CONFIGURATION_H_VERSION MARLIN_HEX_VERSION
+  #endif
+  #ifndef REQUIRED_CONFIGURATION_ADV_H_VERSION
+    #define REQUIRED_CONFIGURATION_ADV_H_VERSION MARLIN_HEX_VERSION
+  #endif
 
-/**
- * Website where users can find Marlin source code for the binary installed on the
- * device. Override this if you provide public source code download. (GPLv3 requires
- * providing the source code to your customers.)
- */
-#ifndef SOURCE_CODE_URL
-  #define SOURCE_CODE_URL "https://github.com/MarlinFirmware/Marlin"
-#endif
+  /**
+   * The protocol for communication to the host. Protocol indicates communication
+   * standards such as the use of ASCII, "echo:" and "error:" line prefixes, etc.
+   * (Other behaviors are given by the firmware version and capabilities report.)
+   */
+  #ifndef PROTOCOL_VERSION
+    #define PROTOCOL_VERSION "1.0"
+  #endif
 
-/**
- * Default generic printer UUID.
- */
-#ifndef DEFAULT_MACHINE_UUID
-  #define DEFAULT_MACHINE_UUID "cede2a2f-41a2-4748-9b12-c55c62f367ff"
-#endif
+  /**
+   * Define a generic printer name to be output to the LCD after booting Marlin.
+   */
+  #ifndef MACHINE_NAME
+    #define MACHINE_NAME "3D Printer"
+  #endif
 
-/**
- * Website where users can find information about the 3D Printer.
- * A permanent link to a vendor website is recommended.
- */
-#ifndef WEBSITE_URL
-  #define WEBSITE_URL "http://marlinfw.org"
+  /**
+   * Website where users can find Marlin source code for the binary installed on the
+   * device. Override this if you provide public source code download. (GPLv3 requires
+   * providing the source code to your customers.)
+   */
+  #ifndef SOURCE_CODE_URL
+    #define SOURCE_CODE_URL "https://github.com/MarlinFirmware/Marlin"
+  #endif
+
+  /**
+   * Default generic printer UUID.
+   */
+  #ifndef DEFAULT_MACHINE_UUID
+    #define DEFAULT_MACHINE_UUID "cede2a2f-41a2-4748-9b12-c55c62f367ff"
+  #endif
+
+  /**
+   * Website where users can find information about the 3D Printer.
+   * A permanent link to a vendor website is recommended.
+   */
+  #ifndef WEBSITE_URL
+    #define WEBSITE_URL "http://marlinfw.org"
+  #endif
 #endif

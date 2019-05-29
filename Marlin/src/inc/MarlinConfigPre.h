@@ -31,7 +31,17 @@
 #include "../core/macros.h"
 #include "../core/millis_t.h"
 #include "../../Configuration.h"
-#include "../../Version.h"
+
+#ifdef CUSTOM_VERSION_FILE
+  #if defined(__has_include)
+    #if __has_include( CUSTOM_VERSION_FILE )
+      #include CUSTOM_VERSION_FILE
+    #endif
+  #else
+    #include CUSTOM_VERSION_FILE
+  #endif
+#endif
+
 #include "Version.h"
 #include "Conditionals_LCD.h"
 #include "../core/drivers.h"
