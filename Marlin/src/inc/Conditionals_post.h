@@ -1704,23 +1704,31 @@
   #define Z_STEPPER_COUNT 1
 #endif
 
-// Get LCD character width/height, which may be overridden by pins, configs, etc.
-#ifndef LCD_WIDTH
-  #if HAS_GRAPHICAL_LCD
-    #define LCD_WIDTH 21
-  #elif ENABLED(ULTIPANEL)
-    #define LCD_WIDTH 20
-  #elif HAS_SPI_LCD
-    #define LCD_WIDTH 16
+#if HAS_SPI_LCD
+  // Get LCD character width/height, which may be overridden by pins, configs, etc.
+  #ifndef LCD_WIDTH
+    #if HAS_GRAPHICAL_LCD
+      #define LCD_WIDTH 21
+    #elif ENABLED(ULTIPANEL)
+      #define LCD_WIDTH 20
+    #else
+      #define LCD_WIDTH 16
+    #endif
   #endif
-#endif
-#ifndef LCD_HEIGHT
-  #if HAS_GRAPHICAL_LCD
-    #define LCD_HEIGHT 5
-  #elif ENABLED(ULTIPANEL)
-    #define LCD_HEIGHT 4
-  #elif HAS_SPI_LCD
-    #define LCD_HEIGHT 2
+  #ifndef LCD_HEIGHT
+    #if HAS_GRAPHICAL_LCD
+      #define LCD_HEIGHT 5
+    #elif ENABLED(ULTIPANEL)
+      #define LCD_HEIGHT 4
+    #else
+      #define LCD_HEIGHT 2
+    #endif
+  #endif
+  #ifndef STRING_SPLASH_LINE1
+    #define STRING_SPLASH_LINE1 SHORT_BUILD_VERSION // Shown during bootup in line 1
+  #endif
+  #ifndef STRING_SPLASH_LINE2
+    #define STRING_SPLASH_LINE2 WEBSITE_URL         // Shown during bootup in line 2
   #endif
 #endif
 

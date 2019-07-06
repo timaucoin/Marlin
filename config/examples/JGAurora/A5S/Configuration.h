@@ -75,8 +75,8 @@
 // build by the user have been successfully uploaded into firmware.
 #define STRING_CONFIG_H_AUTHOR "(Roberto Mariani & Samuel Pinches)" // Who made the changes.
 #define SHOW_BOOTSCREEN
-#define STRING_SPLASH_LINE1 "Marlin 2b6 (10/6/19)" // will be shown during bootup in line 1
-#define STRING_SPLASH_LINE2 "JGAuroraForum.com"         // will be shown during bootup in line 2
+#define STRING_SPLASH_LINE1 "Marlin 2b6 (10/6/19)" // Shown during bootup in line 1
+#define STRING_SPLASH_LINE2 "JGAuroraForum.com"         // Shown during bootup in line 2
 
 /**
  * *** VENDORS PLEASE READ ***

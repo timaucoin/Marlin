@@ -33,13 +33,7 @@
 #include "../../Configuration.h"
 
 #ifdef CUSTOM_VERSION_FILE
-  #if defined(__has_include)
-    #if __has_include( CUSTOM_VERSION_FILE )
-      #include CUSTOM_VERSION_FILE
-    #endif
-  #else
-    #include CUSTOM_VERSION_FILE
-  #endif
+  #include XSTR(../../CUSTOM_VERSION_FILE)
 #endif
 
 #include "Version.h"
