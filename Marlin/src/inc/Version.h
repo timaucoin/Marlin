@@ -37,10 +37,12 @@
 #endif
 
 /**
- * Distribution date of this release.
- */
+   * The STRING_DISTRIBUTION_DATE represents when the binary file was built,
+   * here we define this default string as the date where the latest release
+   * version was tagged.
+   */
 #ifndef STRING_DISTRIBUTION_DATE
-  #define STRING_DISTRIBUTION_DATE "2019-07-05"
+  #define STRING_DISTRIBUTION_DATE "2019-07-16"
 #endif
 
 /**
