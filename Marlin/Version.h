@@ -21,75 +21,48 @@
  */
 #pragma once
 
-/**
- * This file is the standard Marlin version identifier file.
- * Use -DUSE_AUTOMATIC_VERSIONING=1 and a custom _Version.h
- * to override these values.
+/*
+ * Override any of the default Version values here
  */
 
-#if ENABLED(USE_AUTOMATIC_VERSIONING)
-
-  #include "_Version.h"
-
-#else
-
-  /**
+/**
    * Marlin release version identifier
    */
-  #define SHORT_BUILD_VERSION "bugfix-2.0.x"
+//#define SHORT_BUILD_VERSION "bugfix-2.0.x"
 
-  /**
+/**
    * Verbose version identifier which should contain a reference to the location
    * from where the binary was downloaded or the source code was compiled.
    */
-  #define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (Github)"
+//#define DETAILED_BUILD_VERSION SHORT_BUILD_VERSION " (Github)"
 
-  /**
+/**
    * The STRING_DISTRIBUTION_DATE represents when the binary file was built,
    * here we define this default string as the date where the latest release
    * version was tagged.
    */
-  #define STRING_DISTRIBUTION_DATE "2019-07-10"
+//#define STRING_DISTRIBUTION_DATE "2019-07-10"
 
-  /**
-   * Required minimum Configuration.h and Configuration_adv.h file versions.
-   *
-   * You must increment this version number for every significant change such as,
-   * but not limited to: ADD, DELETE RENAME OR REPURPOSE any directive/option on
-   * the configuration files.
-   */
-  #define REQUIRED_CONFIGURATION_H_VERSION 020000
-  #define REQUIRED_CONFIGURATION_ADV_H_VERSION 020000
-
-  /**
-   * The protocol for communication to the host. Protocol indicates communication
-   * standards such as the use of ASCII, "echo:" and "error:" line prefixes, etc.
-   * (Other behaviors are given by the firmware version and capabilities report.)
-   */
-  #define PROTOCOL_VERSION "1.0"
-
-  /**
+/**
    * Defines a generic printer name to be output to the LCD after booting Marlin.
    */
-  #define MACHINE_NAME "3D Printer"
+//#define MACHINE_NAME "3D Printer"
 
-  /**
+/**
    * The SOURCE_CODE_URL is the location where users will find the Marlin Source
    * Code which is installed on the device. In most cases —unless the manufacturer
    * has a distinct Github fork— the Source Code URL should just be the main
    * Marlin repository.
    */
-  #define SOURCE_CODE_URL "https://github.com/MarlinFirmware/Marlin"
+//#define SOURCE_CODE_URL "https://github.com/MarlinFirmware/Marlin"
 
-  /**
+/**
    * Default generic printer UUID.
    */
-  #define DEFAULT_MACHINE_UUID "cede2a2f-41a2-4748-9b12-c55c62f367ff"
+//#define DEFAULT_MACHINE_UUID "cede2a2f-41a2-4748-9b12-c55c62f367ff"
 
-  /**
+/**
    * The WEBSITE_URL is the location where users can get more information such as
    * documentation about a specific Marlin release.
    */
-  #define WEBSITE_URL "http://marlinfw.org"
-
-#endif // USE_AUTOMATIC_VERSIONING
+//#define WEBSITE_URL "http://marlinfw.org"
