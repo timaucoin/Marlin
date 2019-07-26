@@ -51,12 +51,11 @@
  * older configurations. Override these if using a custom versioning scheme
  * to alert users to major changes.
  */
-#define MARLIN_HEX_VERSION 020000
 #ifndef REQUIRED_CONFIGURATION_H_VERSION
-  #define REQUIRED_CONFIGURATION_H_VERSION MARLIN_HEX_VERSION
+  #define REQUIRED_CONFIGURATION_H_VERSION 020000
 #endif
 #ifndef REQUIRED_CONFIGURATION_ADV_H_VERSION
-  #define REQUIRED_CONFIGURATION_ADV_H_VERSION MARLIN_HEX_VERSION
+  #define REQUIRED_CONFIGURATION_ADV_H_VERSION 020000
 #endif
 
 /**
