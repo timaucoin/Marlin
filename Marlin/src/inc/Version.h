@@ -52,9 +52,13 @@
  * to alert users to major changes.
  */
 
-#define REQUIRED_CONFIGURATION_H_VERSION 020000
-#define REQUIRED_CONFIGURATION_ADV_H_VERSION 020000
-
+#define MARLIN_HEX_VERSION 020000
+#ifndef REQUIRED_CONFIGURATION_H_VERSION
+  #define REQUIRED_CONFIGURATION_H_VERSION MARLIN_HEX_VERSION
+#endif
+#ifndef REQUIRED_CONFIGURATION_ADV_H_VERSION
+  #define REQUIRED_CONFIGURATION_ADV_H_VERSION MARLIN_HEX_VERSION
+#endif
 
 /**
  * The protocol for communication to the host. Protocol indicates communication
