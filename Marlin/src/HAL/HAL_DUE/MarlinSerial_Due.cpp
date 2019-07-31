@@ -245,7 +245,7 @@ void MarlinSerial<Cfg>::UART_ISR(void) {
 
 // Public Methods
 template<typename Cfg>
-void MarlinSerial<Cfg>::begin(const long baud_setting) {
+void MarlinSerial<Cfg>::begin(const uint32_t baud_setting) {
 
   // Disable UART interrupt in NVIC
   NVIC_DisableIRQ( HWUART_IRQ );
