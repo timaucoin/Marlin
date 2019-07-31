@@ -1427,7 +1427,7 @@ void MarlinSettings::postprocess() {
       // Baud Rate
       //
       {
-        const uint32_t baud1, baud2;
+        uint32_t baud1, baud2;
         _FIELD_TEST(baud1);
         EEPROM_READ(baud1);
         EEPROM_READ(baud2);
