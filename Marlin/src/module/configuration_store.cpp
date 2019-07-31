@@ -161,8 +161,8 @@ typedef struct SettingsDataStruct {
   //
   // Baud Rate
   //
-  long baud1;
-  long baud2;
+  uint32_t baud1;
+  uint32_t baud2;
 
   //
   // ENABLE_LEVELING_FADE_HEIGHT
@@ -599,18 +599,18 @@ void MarlinSettings::postprocess() {
     {
       #if ENABLED(BAUD_RATE_GCODE)
         #if defined(SERIAL_PORT)
-          const long baud1 = MYSERIAL0.baudrate;
+          const uint32_t baud1 = MYSERIAL0.baudrate;
         #else
-          const long baud1 = BAUDRATE;
+          const uint32_t baud1 = BAUDRATE;
         #endif
         #if defined(SERIAL_PORT_2)
-          const long baud2 = MYSERIAL1.baudrate;
+          const uint32_t baud2 = MYSERIAL1.baudrate;
         #else
-          const long baud2 = BAUDRATE;
+          const uint32_t baud2 = BAUDRATE;
         #endif
       #else
-        const long baud1 = BAUDRATE;
-        const long baud2 = BAUDRATE;
+        const uint32_t baud1 = BAUDRATE;
+        const uint32_t baud2 = BAUDRATE;
       #endif
       _FIELD_TEST(baud1);
       EEPROM_WRITE(baud1);
@@ -1427,7 +1427,7 @@ void MarlinSettings::postprocess() {
       // Baud Rate
       //
       {
-        const long baud1, baud2;
+        const uint32_t baud1, baud2;
         _FIELD_TEST(baud1);
         EEPROM_READ(baud1);
         EEPROM_READ(baud2);
