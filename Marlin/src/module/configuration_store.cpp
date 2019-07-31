@@ -37,7 +37,7 @@
  */
 
 // Change EEPROM version if the structure changes
-#define EEPROM_VERSION "V68"
+#define EEPROM_VERSION "V69"
 #define EEPROM_OFFSET 100
 
 // Check the integrity of data offsets.
@@ -157,6 +157,12 @@ typedef struct SettingsDataStruct {
   //
   bool runout_sensor_enabled;                           // M412 S
   float runout_distance_mm;                             // M412 D
+
+  //
+  // Baud Rate
+  //
+  long baud1;
+  long baud2;
 
   //
   // ENABLE_LEVELING_FADE_HEIGHT
@@ -585,6 +591,30 @@ void MarlinSettings::postprocess() {
       _FIELD_TEST(runout_sensor_enabled);
       EEPROM_WRITE(runout_sensor_enabled);
       EEPROM_WRITE(runout_distance_mm);
+    }
+
+    //
+    // Baud Rate
+    //
+    {
+      #if ENABLED(BAUD_RATE_GCODE)
+        #if defined(SERIAL_PORT)
+          const long baud1 = MYSERIAL0.baudrate;
+        #else
+          const long baud1 = BAUDRATE;
+        #endif
+        #if defined(SERIAL_PORT_2)
+          const long baud2 = MYSERIAL1.baudrate;
+        #else
+          const long baud2 = BAUDRATE;
+        #endif
+      #else
+        const long baud1 = BAUDRATE;
+        const long baud2 = BAUDRATE;
+      #endif
+      _FIELD_TEST(baud1);
+      EEPROM_WRITE(baud1);
+      EEPROM_WRITE(baud2);
     }
 
     //
@@ -1390,6 +1420,27 @@ void MarlinSettings::postprocess() {
         EEPROM_READ(runout_distance_mm);
         #if HAS_FILAMENT_SENSOR && defined(FILAMENT_RUNOUT_DISTANCE_MM)
           if (!validating) runout.set_runout_distance(runout_distance_mm);
+        #endif
+      }
+
+      //
+      // Baud Rate
+      //
+      {
+        const long baud1, baud2;
+        _FIELD_TEST(baud1);
+        EEPROM_READ(baud1);
+        EEPROM_READ(baud2);
+        #if ENABLED(BAUD_RATE_GCODE)
+          #if defined(SERIAL_PORT)
+            if (MYSERIAL0.baudrate != baud1) {
+              MYSERIAL0.end(); MYSERIAL0.begin(baud);
+            }
+          #endif
+          #if defined(SERIAL_PORT_2)
+            if (MYSERIAL1.baudrate != baud2) {
+              MYSERIAL1.end(); MYSERIAL1.begin(baud);
+            }
         #endif
       }
 
@@ -2282,6 +2333,23 @@ void MarlinSettings::reset() {
   #endif
 
   //
+  // Baud Rate
+  //
+  {
+    #if ENABLED(BAUD_RATE_GCODE)
+      #if defined(SERIAL_PORT)
+        if (MYSERIAL0.baudrate != BAUDRATE) {
+          MYSERIAL0.end(); MYSERIAL0.begin(BAUDRATE);
+        }
+      #endif
+      #if defined(SERIAL_PORT_2)
+        if (MYSERIAL1.baudrate != BAUDRATE) {
+          MYSERIAL1.end(); MYSERIAL1.begin(BAUDRATE);
+        }
+    #endif
+  }
+
+  //
   // Tool-change Settings
   //
 
@@ -2819,6 +2887,15 @@ void MarlinSettings::reset() {
       CONFIG_ECHO_HEADING("Filament Runout Sensor:");
       CONFIG_ECHO_START();
       SERIAL_ECHOLNPAIR("  M412 S", int(runout.enabled));
+    #endif
+
+    #if ENABLED(BAUD_RATE_GCODE)
+      CONFIG_ECHO_HEADING("Serial 1 baud rate set to :");
+      CONFIG_ECHO_START();
+      SERIAL_ECHOLNPAIR(" M575 P0 S", MYSERIAL0.baudrate);
+      CONFIG_ECHO_HEADING("Serial 2 baud rate set to :");
+      CONFIG_ECHO_START();
+      SERIAL_ECHOLNPAIR(" M575 P1 S", MYSERIAL1.baudrate);
     #endif
 
     /**

@@ -33,12 +33,12 @@
  *   B<baudrate> - Baud rate (bits per second)
  */
 void GcodeSuite::M575() {
-  const int32_t baud = parser.ulongval('B');
+  const long baud = parser.ulongval('B');
   switch (baud) {
     case 2400: case 9600: case 19200: case 38400: case 57600:
-    case 115200: case 250000: case 500000: case 1000000: {
+    case 115200: case 230400: case 250000: case 500000: case 1000000: {
       const int8_t port = parser.intval('P', -99);
-      const bool set0 = (port == -99 || port == 0);
+      const bool set0 = (port == -99 || port == 0) && baud != MYSERIAL0.baudrate;
       if (set0) {
         SERIAL_ECHO_START();
         SERIAL_ECHOLNPAIR(" Serial "
@@ -66,6 +66,7 @@ void GcodeSuite::M575() {
         if (set1) { MYSERIAL1.end(); MYSERIAL1.begin(baud); }
       #endif
 
+      if (parser.seen('U')) settings.store();
     } break;
     default: SERIAL_ECHO_MSG("?(B)aud rate is implausible.");
   }
