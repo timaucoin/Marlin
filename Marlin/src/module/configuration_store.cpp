@@ -1431,16 +1431,18 @@ void MarlinSettings::postprocess() {
         _FIELD_TEST(baudrate);
         EEPROM_READ(baudrate);
         #if ENABLED(BAUD_RATE_GCODE)
-          #ifdef SERIAL_PORT
-            if (MYSERIAL0.baudrate != baudrate[0]) {
-              MYSERIAL0.end(); MYSERIAL0.begin(baudrate[0]);
-            }
-          #endif
-          #ifdef SERIAL_PORT_2
-            if (MYSERIAL1.baudrate != baud2) {
-              MYSERIAL1.end(); MYSERIAL1.begin(baudrate[1]);
-            }
-          #endif
+          if (!validating) {
+            #ifdef SERIAL_PORT
+              if (MYSERIAL0.baudrate != baudrate[0]) {
+                MYSERIAL0.end(); MYSERIAL0.begin(baudrate[0]);
+              }
+            #endif
+            #ifdef SERIAL_PORT_2
+              if (MYSERIAL1.baudrate != baud2) {
+                MYSERIAL1.end(); MYSERIAL1.begin(baudrate[1]);
+              }
+            #endif
+          }
         #endif
       }
 
