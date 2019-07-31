@@ -1434,12 +1434,12 @@ void MarlinSettings::postprocess() {
         #if ENABLED(BAUD_RATE_GCODE)
           #if defined(SERIAL_PORT)
             if (MYSERIAL0.baudrate != baud1) {
-              MYSERIAL0.end(); MYSERIAL0.begin(baud);
+              MYSERIAL0.end(); MYSERIAL0.begin(baud1);
             }
           #endif
           #if defined(SERIAL_PORT_2)
             if (MYSERIAL1.baudrate != baud2) {
-              MYSERIAL1.end(); MYSERIAL1.begin(baud);
+              MYSERIAL1.end(); MYSERIAL1.begin(baud2);
             }
           #endif
         #endif

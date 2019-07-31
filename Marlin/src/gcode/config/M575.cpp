@@ -34,7 +34,7 @@
  *   B<baudrate> - Baud rate (bits per second)
  */
 void GcodeSuite::M575() {
-  const long baud = parser.ulongval('B');
+  const uint32_t baud = parser.ulongval('B');
   switch (baud) {
     case 2400: case 9600: case 19200: case 38400: case 57600:
     case 115200: case 230400: case 250000: case 500000: case 1000000:
