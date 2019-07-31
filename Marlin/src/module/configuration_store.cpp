@@ -161,8 +161,7 @@ typedef struct SettingsDataStruct {
   //
   // Baud Rate
   //
-  uint32_t baud1;
-  uint32_t baud2;
+  long baudrate[2];                                     // M575 P S
 
   //
   // ENABLE_LEVELING_FADE_HEIGHT
@@ -597,24 +596,25 @@ void MarlinSettings::postprocess() {
     // Baud Rate
     //
     {
-      #if ENABLED(BAUD_RATE_GCODE)
-        #if defined(SERIAL_PORT)
-          const uint32_t baud1 = MYSERIAL0.baudrate;
+      const long baudrate[2] = {
+        #if ENABLED(BAUD_RATE_GCODE)
+          #ifdef SERIAL_PORT
+            MYSERIAL0.baudrate
+          #else
+            BAUDRATE
+          #endif
+          ,
+          #ifdef SERIAL_PORT_2
+            MYSERIAL1.baudrate
+          #else
+            BAUDRATE
+          #endif
         #else
-          const uint32_t baud1 = BAUDRATE;
+          BAUDRATE, BAUDRATE
         #endif
-        #if defined(SERIAL_PORT_2)
-          const uint32_t baud2 = MYSERIAL1.baudrate;
-        #else
-          const uint32_t baud2 = BAUDRATE;
-        #endif
-      #else
-        const uint32_t baud1 = BAUDRATE;
-        const uint32_t baud2 = BAUDRATE;
-      #endif
-      _FIELD_TEST(baud1);
-      EEPROM_WRITE(baud1);
-      EEPROM_WRITE(baud2);
+      };
+      _FIELD_TEST(baudrate);
+      EEPROM_WRITE(baudrate);
     }
 
     //
@@ -1427,19 +1427,18 @@ void MarlinSettings::postprocess() {
       // Baud Rate
       //
       {
-        uint32_t baud1, baud2;
-        _FIELD_TEST(baud1);
-        EEPROM_READ(baud1);
-        EEPROM_READ(baud2);
+        long baudrate[2];
+        _FIELD_TEST(baudrate);
+        EEPROM_READ(baudrate);
         #if ENABLED(BAUD_RATE_GCODE)
-          #if defined(SERIAL_PORT)
-            if (MYSERIAL0.baudrate != baud1) {
-              MYSERIAL0.end(); MYSERIAL0.begin(baud1);
+          #ifdef SERIAL_PORT
+            if (MYSERIAL0.baudrate != baudrate[0]) {
+              MYSERIAL0.end(); MYSERIAL0.begin(baudrate[0]);
             }
           #endif
-          #if defined(SERIAL_PORT_2)
+          #ifdef SERIAL_PORT_2
             if (MYSERIAL1.baudrate != baud2) {
-              MYSERIAL1.end(); MYSERIAL1.begin(baud2);
+              MYSERIAL1.end(); MYSERIAL1.begin(baudrate[1]);
             }
           #endif
         #endif
