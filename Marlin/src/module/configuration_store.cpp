@@ -1438,7 +1438,7 @@ void MarlinSettings::postprocess() {
               }
             #endif
             #ifdef SERIAL_PORT_2
-              if (MYSERIAL1.baudrate != baud2) {
+              if (MYSERIAL1.baudrate != baudrate[1]) {
                 MYSERIAL1.end(); MYSERIAL1.begin(baudrate[1]);
               }
             #endif
