@@ -619,12 +619,11 @@ void menu_backlash();
   #if ENABLED(BAUD_RATE_GCODE)
     static void lcd_set_serial1_baud() {
       START_MENU();
-      #if (NUM_SERIAL==1)
+      #if NUM_SERIAL == 1
         MENU_BACK(MSG_ADVANCED_SETTINGS);
       #else
         MENU_BACK(MSG_SERIAL_SELECT);
       #endif
-
       MENU_ITEM_P(gcode, MSG_SERIAL_BAUD_2400, PSTR("M575P0B2400U"));
       MENU_ITEM_P(gcode, MSG_SERIAL_BAUD_9600, PSTR("M575P0B9600U"));
       MENU_ITEM_P(gcode, MSG_SERIAL_BAUD_19200, PSTR("M575P0B19200U"));
@@ -640,11 +639,10 @@ void menu_backlash();
       END_MENU();
     }
 
-    #if (NUM_SERIAL>1)
+    #if NUM_SERIAL > 1
       static void lcd_set_serial2_baud() {
       START_MENU();
       MENU_BACK(MSG_SERIAL_SELECT);
-
       MENU_ITEM_P(gcode, MSG_SERIAL_BAUD_2400, PSTR("M575P1B2400U"));
       MENU_ITEM_P(gcode, MSG_SERIAL_BAUD_9600, PSTR("M575P1B9600U"));
       MENU_ITEM_P(gcode, MSG_SERIAL_BAUD_19200, PSTR("M575P1B19200U"));
