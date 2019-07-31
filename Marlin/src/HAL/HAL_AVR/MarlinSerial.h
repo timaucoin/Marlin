@@ -192,7 +192,7 @@
                    rx_dropped_bytes,
                    rx_buffer_overruns,
                    rx_framing_errors;
-    static uint32_t current_baudrate;
+    static long current_baudrate;
     static ring_buffer_pos_t rx_max_enqueued;
 
     static FORCE_INLINE ring_buffer_pos_t atomic_read_rx_head();
@@ -210,7 +210,7 @@
 
     public:
       MarlinSerial() {};
-      static uint32_t baudrate();
+      static long baudrate();
       static void begin(const long);
       static void end();
       static int peek(void);
