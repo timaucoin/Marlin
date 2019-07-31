@@ -211,7 +211,7 @@
     public:
       MarlinSerial() {};
       static uint32_t baudrate();
-      static void begin(const uint32_t);
+      static void begin(const long);
       static void end();
       static int peek(void);
       static int read(void);
