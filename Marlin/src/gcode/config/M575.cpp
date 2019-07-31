@@ -25,6 +25,7 @@
 #if ENABLED(BAUD_RATE_GCODE)
 
 #include "../gcode.h"
+#include "../../module/configuration_store.h"
 
 /**
  * M575 - Change serial baud rate
@@ -52,7 +53,7 @@ void GcodeSuite::M575() {
         );
       }
       #if NUM_SERIAL > 1
-        const bool set1 = (port == -99 || port == 1);
+        const bool set1 = (port == -99 || port == 1) && baud != MYSERIAL1.baudrate;
         if (set1) {
           SERIAL_ECHO_START();
           SERIAL_ECHOLNPAIR(" Serial ", '1', " baud rate set to ", baud);
@@ -67,7 +68,7 @@ void GcodeSuite::M575() {
         if (set1) { MYSERIAL1.end(); MYSERIAL1.begin(baud); }
       #endif
 
-      if (parser.seen('U')) settings.store();
+      if (parser.seen('U')) settings.save();
     } break;
     default: SERIAL_ECHO_MSG("?(B)aud rate is implausible.");
   }

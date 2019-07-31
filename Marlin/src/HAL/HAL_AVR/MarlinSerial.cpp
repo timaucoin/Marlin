@@ -326,12 +326,14 @@
   // Public Methods
   template<typename Cfg>
   long MarlinSerial<Cfg>::baudrate() {
-    return Cfg::current_baudrate;
+    return current_baudrate;
   }
+
+  template<typename Cfg>
   void MarlinSerial<Cfg>::begin(const long baud) {
     uint16_t baud_setting;
     bool useU2X = true;
-    return Cfg::current_baudrate = baud;
+    current_baudrate = baud;
     #if F_CPU == 16000000UL && SERIAL_PORT == 0
       // Hard-coded exception for compatibility with the bootloader shipped
       // with the Duemilanove and previous boards, and the firmware on the

@@ -210,7 +210,7 @@
 
     public:
       MarlinSerial() {};
-      static long MarlinSerial<Cfg>::baudrate();
+      static long baudrate();
       static void begin(const long);
       static void end();
       static int peek(void);

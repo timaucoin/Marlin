@@ -1441,6 +1441,7 @@ void MarlinSettings::postprocess() {
             if (MYSERIAL1.baudrate != baud2) {
               MYSERIAL1.end(); MYSERIAL1.begin(baud);
             }
+          #endif
         #endif
       }
 
@@ -2346,6 +2347,7 @@ void MarlinSettings::reset() {
         if (MYSERIAL1.baudrate != BAUDRATE) {
           MYSERIAL1.end(); MYSERIAL1.begin(BAUDRATE);
         }
+      #endif
     #endif
   }
 
@@ -2893,9 +2895,11 @@ void MarlinSettings::reset() {
       CONFIG_ECHO_HEADING("Serial 1 baud rate set to :");
       CONFIG_ECHO_START();
       SERIAL_ECHOLNPAIR(" M575 P0 S", MYSERIAL0.baudrate);
-      CONFIG_ECHO_HEADING("Serial 2 baud rate set to :");
-      CONFIG_ECHO_START();
-      SERIAL_ECHOLNPAIR(" M575 P1 S", MYSERIAL1.baudrate);
+      #if defined(SERIAL_PORT_2)
+        CONFIG_ECHO_HEADING("Serial 2 baud rate set to :");
+        CONFIG_ECHO_START();
+        SERIAL_ECHOLNPAIR(" M575 P1 S", MYSERIAL1.baudrate);
+      #endif
     #endif
 
     /**
