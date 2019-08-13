@@ -41,9 +41,8 @@
    * here we define this default string as the date where the latest release
    * version was tagged.
    */
-
 #ifndef STRING_DISTRIBUTION_DATE
-  #define STRING_DISTRIBUTION_DATE "2019-07-30"
+  #define STRING_DISTRIBUTION_DATE "2019-08-08"
 #endif
 
 /**
