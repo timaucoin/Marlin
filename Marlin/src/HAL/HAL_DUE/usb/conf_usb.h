@@ -57,12 +57,6 @@
  */
 
 //! Device definition (mandatory)
-#ifndef USB_DEVICE_VENDOR_ID
-  #define  USB_DEVICE_VENDOR_ID           0x03EB /* ATMEL VID */
-#endif
-#ifndef USB_DEVICE_PRODUCT_ID
-  #define  USB_DEVICE_PRODUCT_ID          0x2424 /* MSC / CDC */
-#endif
 #define  USB_DEVICE_MAJOR_VERSION         1
 #define  USB_DEVICE_MINOR_VERSION         0
 #define  USB_DEVICE_POWER                 100 // Consumption on Vbus line (mA)
@@ -71,17 +65,6 @@
 // (USB_CONFIG_ATTR_BUS_POWERED)
 //  (USB_CONFIG_ATTR_REMOTE_WAKEUP|USB_CONFIG_ATTR_SELF_POWERED)
 //  (USB_CONFIG_ATTR_REMOTE_WAKEUP|USB_CONFIG_ATTR_BUS_POWERED)
-
-//! USB Device string definitions (Optional)
-#ifndef USB_DEVICE_MANUFACTURE_NAME
-  #define  USB_DEVICE_MANUFACTURE_NAME    "marlinfw.org"
-#endif
-#ifdef CUSTOM_MACHINE_NAME
-  #define  USB_DEVICE_PRODUCT_NAME        CUSTOM_MACHINE_NAME
-#else
-  #define  USB_DEVICE_PRODUCT_NAME        "3D Printer"
-#endif
-#define  USB_DEVICE_SERIAL_NAME           "123985739853"
 
 /**
  * Device speeds support

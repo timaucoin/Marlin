@@ -99,3 +99,24 @@
 #ifndef WEBSITE_URL
   #define WEBSITE_URL "http://marlinfw.org"
 #endif
+
+/**
+ * Set the vendor info the serial USB interface, if changable
+ * Currently only supported by DUE platform
+ */
+#ifndef USB_DEVICE_VENDOR_ID
+  #define  USB_DEVICE_VENDOR_ID           0x03EB /* ATMEL VID */
+#endif
+#ifndef USB_DEVICE_PRODUCT_ID
+  #define  USB_DEVICE_PRODUCT_ID          0x2424 /* MSC / CDC */
+#endif
+//! USB Device string definitions (Optional)
+#ifndef USB_DEVICE_MANUFACTURE_NAME
+  #define  USB_DEVICE_MANUFACTURE_NAME    WEBSITE_URL
+#endif
+#ifdef CUSTOM_MACHINE_NAME
+  #define  USB_DEVICE_PRODUCT_NAME        CUSTOM_MACHINE_NAME
+#else
+  #define  USB_DEVICE_PRODUCT_NAME        MACHINE_NAME
+#endif
+#define  USB_DEVICE_SERIAL_NAME           "123985739853"
